@@ -7,15 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.google.common.base.VerifyException;
-import com.google.gson.Gson;
-import io.micronaut.core.io.ResourceResolver;
-import io.micronaut.core.io.scan.ClassPathResourceLoader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,17 +19,11 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class CurrencyListTest {
 
-    private static Gson gson;
     private static Currency uahCurrency;
 
     @BeforeAll
-    public static void initTests() throws IOException {
-        gson = new Gson();
-        ClassPathResourceLoader loader = new ResourceResolver().getLoader(ClassPathResourceLoader.class).get();
-
-        Optional<URL> uahJson = loader.getResource("classpath:currency/UAH.json");
-        Reader uahReader = new InputStreamReader(uahJson.get().openStream(), StandardCharsets.UTF_8.name());
-        uahCurrency = gson.fromJson(uahReader, Currency.class);
+    public static void initTests() {
+        uahCurrency = CurrencyUtil.readCurrency(CurrencyEnum.UAH);
     }
 
     @BeforeEach

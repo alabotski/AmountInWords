@@ -52,11 +52,11 @@ public class CurrencyList {
         if (currency == null) {
             throw new NullPointerException("Currency is null");
         }
-        if (!Currency.validate(currency)) {
+        if (!CurrencyUtil.validate(currency)) {
             throw new NullPointerException("Currency " + currency + " is not properly initialized");
         }
         if (!isExists(currency)) {
-            currencies.add(currency.clone());
+            currencies.add(CurrencyUtil.clone(currency));
         }
     }
 

@@ -1,6 +1,9 @@
 package by.lesharb.controller;
 
+import by.lesharb.currency.Currency;
 import by.lesharb.currency.CurrencyEnum;
+import by.lesharb.currency.CurrencyList;
+import by.lesharb.currency.CurrencyUtil;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Delete;
@@ -28,7 +31,9 @@ public class AmountController {
             log.error(errMsg);
             return Single.just(errMsg);
         } else {
-            return null;
+            Currency currencyAdd = CurrencyUtil.readCurrency(currencyEnum);
+            CurrencyList.addCurrency(currencyAdd);
+            return Single.just("Currency added successfully");
         }
     }
 
