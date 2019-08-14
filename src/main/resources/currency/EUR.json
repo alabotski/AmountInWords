@@ -1,0 +1,12 @@
+{
+  "code": 978,
+  "name": "EUR",
+  "oneInteger": "евро",
+  "twoIntegers": "евро",
+  "fiveIntegers": "евро",
+  "integerSex": "MALE",
+  "oneFraction": "евроцент",
+  "twoFractions": "евроцента",
+  "fiveFractions": "евроцентов",
+  "fractionSex": "MALE"
+}

@@ -1,0 +1,12 @@
+{
+  "code": 840,
+  "name": "USD",
+  "oneInteger": "доллар",
+  "twoIntegers": "доллара",
+  "fiveIntegers": "долларов",
+  "integerSex": "MALE",
+  "oneFraction": "цент",
+  "twoFractions": "цента",
+  "fiveFractions": "центов",
+  "fractionSex": "MALE"
+}

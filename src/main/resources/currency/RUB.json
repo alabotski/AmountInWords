@@ -1,0 +1,12 @@
+{
+  "code": 643,
+  "name": "RUB",
+  "oneInteger": "рубль",
+  "twoIntegers": "рубля",
+  "fiveIntegers": "рублей",
+  "integerSex": "MALE",
+  "oneFraction": "копейка",
+  "twoFractions": "копейки",
+  "fiveFractions": "копеек",
+  "fractionSex": "FEMALE"
+}

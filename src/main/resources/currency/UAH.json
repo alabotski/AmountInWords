@@ -1,0 +1,12 @@
+{
+  "code": 980,
+  "name": "UAH",
+  "oneInteger": "гривна",
+  "twoIntegers": "гривны",
+  "fiveIntegers": "гривен",
+  "integerSex": "FEMALE",
+  "oneFraction": "копейка",
+  "twoFractions": "копейки",
+  "fiveFractions": "копеек",
+  "fractionSex": "FEMALE"
+}

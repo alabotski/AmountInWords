@@ -1,5 +1,7 @@
 package by.lesharb.currency;
 
+import java.util.Objects;
+import java.util.stream.Stream;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,10 +14,10 @@ import lombok.Data;
  */
 @Data
 @Builder
-class Currency {
+class Currency implements Cloneable {
 
     // Digit currency code
-    private int code;
+    private Integer code;
 
     // Symbol currency code
     private String name;
@@ -31,4 +33,34 @@ class Currency {
     private String twoFractions;
     private String fiveFractions;
     private Sex fractionSex;
+
+    public static boolean validate(Currency currency) {
+        return !Stream.of(currency.getCode(),
+                currency.getName(),
+                currency.getOneInteger(),
+                currency.getTwoIntegers(),
+                currency.getFiveIntegers(),
+                currency.getIntegerSex(),
+                currency.getOneFraction(),
+                currency.getTwoFractions(),
+                currency.getFiveFractions(),
+                currency.getFractionSex())
+                .allMatch(Objects::isNull);
+    }
+
+    @Override
+    public Currency clone() {
+        return Currency.builder()
+                .code(getCode())
+                .name(getName())
+                .oneInteger(getOneInteger())
+                .twoIntegers(getTwoIntegers())
+                .fiveIntegers(getFiveIntegers())
+                .integerSex(getIntegerSex())
+                .oneFraction(getOneFraction())
+                .twoFractions(getTwoFractions())
+                .fiveFractions(getFiveFractions())
+                .fractionSex(getFractionSex())
+                .build();
+    }
 }
