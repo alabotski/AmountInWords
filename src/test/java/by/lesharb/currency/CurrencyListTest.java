@@ -1,6 +1,7 @@
 package by.lesharb.currency;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,40 +29,21 @@ import org.junit.jupiter.api.Test;
 class CurrencyListTest {
 
     private static Gson gson;
-
-    private static Currency eurCurrency;
-    private static Currency rubCurrency;
     private static Currency uahCurrency;
-    private static Currency usdCurrency;
 
     @BeforeAll
     public static void initTests() throws IOException {
         gson = new Gson();
         ClassPathResourceLoader loader = new ResourceResolver().getLoader(ClassPathResourceLoader.class).get();
 
-        Optional<URL> eurJson = loader.getResource("classpath:currency/EUR.json");
-        Reader eurReader = new InputStreamReader(eurJson.get().openStream(), StandardCharsets.UTF_8.name());
-        eurCurrency = gson.fromJson(eurReader, Currency.class);
-
-        Optional<URL> rubJson = loader.getResource("classpath:currency/RUB.json");
-        Reader rubReader = new InputStreamReader(rubJson.get().openStream(), StandardCharsets.UTF_8.name());
-        rubCurrency = gson.fromJson(rubReader, Currency.class);
-
         Optional<URL> uahJson = loader.getResource("classpath:currency/UAH.json");
         Reader uahReader = new InputStreamReader(uahJson.get().openStream(), StandardCharsets.UTF_8.name());
         uahCurrency = gson.fromJson(uahReader, Currency.class);
-
-        Optional<URL> usdJson = loader.getResource("classpath:currency/USD.json");
-        Reader usdReader = new InputStreamReader(usdJson.get().openStream(), StandardCharsets.UTF_8.name());
-        usdCurrency = gson.fromJson(usdReader, Currency.class);
     }
 
     @BeforeEach
     public void init() {
-        CurrencyList.removeCurrency(eurCurrency);
-        CurrencyList.removeCurrency(rubCurrency);
         CurrencyList.removeCurrency(uahCurrency);
-        CurrencyList.removeCurrency(usdCurrency);
     }
 
     @Test
@@ -101,6 +83,16 @@ class CurrencyListTest {
 
         nullPointerException = assertThrows(NullPointerException.class,
                 () -> CurrencyList.addCurrency(Currency.builder().build()));
-        assertTrue(nullPointerException.getMessage().equals("Currency Currency(code=null, name=null, oneInteger=null, twoIntegers=null, fiveIntegers=null, integerSex=null, oneFraction=null, twoFractions=null, fiveFractions=null, fractionSex=null) is not properly initialized"));
+        assertTrue(nullPointerException.getMessage()
+                .equals("Currency Currency(code=null, name=null, oneInteger=null, twoIntegers=null, fiveIntegers=null, integerSex=null, oneFraction=null, twoFractions=null, fiveFractions=null, fractionSex=null) is not properly initialized"));
+    }
+
+    @Test
+    void isExists() {
+        boolean exists = CurrencyList.isExists(uahCurrency);
+        assertFalse(exists);
+        CurrencyList.addCurrency(uahCurrency);
+        exists = CurrencyList.isExists(uahCurrency);
+        assertTrue(exists);
     }
 }

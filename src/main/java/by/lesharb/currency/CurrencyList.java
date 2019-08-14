@@ -4,6 +4,7 @@ import com.google.common.base.Verify;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Predicate;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -54,12 +55,15 @@ public class CurrencyList {
         if (!Currency.validate(currency)) {
             throw new NullPointerException("Currency " + currency + " is not properly initialized");
         }
-        for (Currency c : currencies) {
-            if (c.getCode() == currency.getCode() || c.getName().equals(currency.getName())) {
-                throw new IllegalStateException("Currency " + currency + "already registered");
-            }
+        if (!isExists(currency)) {
+            currencies.add(currency.clone());
         }
-        currencies.add(currency.clone());
+    }
+
+    public static boolean isExists(Currency currency) {
+        Predicate<Currency> currencyFilterCode = currencyFilter -> currencyFilter.getCode() == currency.getCode();
+        Predicate<Currency> currencyFilterName = currencyFilter -> currencyFilter.getName().equals(currency.getName());
+        return currencies.stream().anyMatch(currencyFilterCode.and(currencyFilterName));
     }
 
     public static void removeCurrency(Currency currency) {
