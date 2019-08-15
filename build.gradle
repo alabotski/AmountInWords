@@ -27,6 +27,7 @@ dependencies {
     implementation "com.google.guava:guava:$guavaVersion"
     implementation "org.apache.commons:commons-lang3:$commonslang3Version"
     implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "io.vavr:vavr:$vavrVersion"
 
     annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     annotationProcessor "io.micronaut:micronaut-inject-java"

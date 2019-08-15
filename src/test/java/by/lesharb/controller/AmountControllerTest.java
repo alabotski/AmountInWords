@@ -43,7 +43,7 @@ class AmountControllerTest {
     }
 
     @Client("/amount")
-    interface AmountClient {
+    private interface AmountClient {
 
         @Post("/{currency}")
         Single<String> addCurrency(@NotBlank String currency);

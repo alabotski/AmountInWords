@@ -1,4 +1,4 @@
-package by.lesharb.currency;
+package by.lesharb.dto;
 
 /**
  * @author Aliaksei Labotski.

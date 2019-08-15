@@ -1,4 +1,4 @@
-package by.lesharb.currency;
+package by.lesharb.dto;
 
 import lombok.Builder;
 import lombok.Data;

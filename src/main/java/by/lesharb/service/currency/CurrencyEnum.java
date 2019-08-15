@@ -1,10 +1,10 @@
-package by.lesharb.currency;
+package by.lesharb.service.currency;
 
 /**
  * @author Aliaksei Labotski.
  * @since 2019-08-14.
  */
-public enum CurrencyEnum {
+enum CurrencyEnum {
     EUR,
     RUB,
     UAH,

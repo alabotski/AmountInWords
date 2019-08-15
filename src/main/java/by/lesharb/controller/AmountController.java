@@ -1,9 +1,6 @@
 package by.lesharb.controller;
 
-import by.lesharb.currency.Currency;
-import by.lesharb.currency.CurrencyEnum;
-import by.lesharb.currency.CurrencyList;
-import by.lesharb.currency.CurrencyUtil;
+import by.lesharb.service.currency.CurrencyService;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Delete;
@@ -11,6 +8,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.validation.Validated;
 import io.reactivex.Single;
+import javax.inject.Inject;
 import javax.validation.constraints.NotBlank;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,19 +21,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AmountController {
 
+    @Inject
+    private CurrencyService currencyService;
+
     @Post(uri = "/{currency}", produces = MediaType.TEXT_PLAIN)
     public Single<String> addCurrency(@NotBlank String currency) {
-        CurrencyEnum currencyEnum = CurrencyUtil.getCurrency(currency);
-        Currency currencyAdd = CurrencyUtil.readCurrency(currencyEnum);
-        CurrencyList.addCurrency(currencyAdd);
+        currencyService.addCurrency(currency);
         return Single.just("Currency added successfully");
     }
 
     @Delete(uri = "/{currency}", produces = MediaType.TEXT_PLAIN)
     public Single<String> deleteCurrency(@NotBlank String currency) {
-        CurrencyEnum currencyEnum = CurrencyUtil.getCurrency(currency);
-        Currency currencyRemove = CurrencyUtil.readCurrency(currencyEnum);
-        CurrencyList.removeCurrency(currencyRemove);
+        currencyService.removeCurrency(currency);
         return Single.just("Currency delete successfully");
     }
 
