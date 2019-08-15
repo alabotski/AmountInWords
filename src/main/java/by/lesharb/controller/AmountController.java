@@ -18,31 +18,28 @@ import lombok.extern.slf4j.Slf4j;
  * @author Aliaksei Labotski.
  * @since 2019-08-14.
  */
-@Controller("/")
+@Controller("/amount")
 @Validated
 @Slf4j
 public class AmountController {
 
-    @Post(uri = "/amount/{currency}", produces = MediaType.TEXT_PLAIN)
+    @Post(uri = "/{currency}", produces = MediaType.TEXT_PLAIN)
     public Single<String> addCurrency(@NotBlank String currency) {
-        CurrencyEnum currencyEnum = CurrencyEnum.valueOf(currency);
-        if (currencyEnum == null) {
-            String errMsg = "Current currency is not supported";
-            log.error(errMsg);
-            return Single.just(errMsg);
-        } else {
-            Currency currencyAdd = CurrencyUtil.readCurrency(currencyEnum);
-            CurrencyList.addCurrency(currencyAdd);
-            return Single.just("Currency added successfully");
-        }
+        CurrencyEnum currencyEnum = CurrencyUtil.getCurrency(currency);
+        Currency currencyAdd = CurrencyUtil.readCurrency(currencyEnum);
+        CurrencyList.addCurrency(currencyAdd);
+        return Single.just("Currency added successfully");
     }
 
-    @Delete(uri = "/amount/{currency}", produces = MediaType.TEXT_PLAIN)
+    @Delete(uri = "/{currency}", produces = MediaType.TEXT_PLAIN)
     public Single<String> deleteCurrency(@NotBlank String currency) {
-        return null;
+        CurrencyEnum currencyEnum = CurrencyUtil.getCurrency(currency);
+        Currency currencyRemove = CurrencyUtil.readCurrency(currencyEnum);
+        CurrencyList.removeCurrency(currencyRemove);
+        return Single.just("Currency delete successfully");
     }
 
-    @Get(uri = "/amount/{amount}", produces = MediaType.TEXT_PLAIN)
+    @Get(uri = "/{amount}", produces = MediaType.TEXT_PLAIN)
     public Single<String> amountInWord(@NotBlank String amount) {
         return Single.just("Hello " + amount + "!");
     }

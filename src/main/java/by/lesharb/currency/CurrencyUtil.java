@@ -68,4 +68,15 @@ public class CurrencyUtil {
             return Currency.builder().build();
         }
     }
+
+    public static CurrencyEnum getCurrency(String currency) {
+        CurrencyEnum currencyEnum = CurrencyEnum.valueOf(currency);
+        if (currencyEnum == null) {
+            String errMsg = "Current currency is not supported";
+            log.error(errMsg);
+            throw new IllegalArgumentException(errMsg);
+        } else {
+            return currencyEnum;
+        }
+    }
 }
