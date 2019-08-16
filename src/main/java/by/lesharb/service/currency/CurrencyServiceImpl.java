@@ -13,9 +13,11 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
@@ -128,6 +130,24 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Override
     public List<Tuple3<Integer, String, Currency>> getCurrencies() {
         return new ArrayList<>(currencies);
+    }
+
+    /**
+     * Format amount in words using all currencies.
+     *
+     * @param amount amount to be formatted
+     * @return {@link List} of amount in word
+     * @see CurrencyService#format(long, Currency)
+     */
+    @Override
+    public Map<String, String> format(long amount) {
+        return currencies.stream().collect(
+                Collectors.toMap(tupleCurrency -> tupleCurrency._2, tupleCurrency -> format(amount, tupleCurrency._3)));
+    }
+
+    @Override
+    public String format(long amount, Currency currency) {
+        return null;
     }
 
     private boolean validate(Currency currency) {

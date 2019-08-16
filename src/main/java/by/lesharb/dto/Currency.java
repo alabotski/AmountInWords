@@ -3,7 +3,6 @@ package by.lesharb.dto;
 import lombok.Builder;
 import lombok.Data;
 
-
 /**
  * Class which represents Currency. Fields other than <code>code</code> and <code>name</code> are used for morphology.
  *
@@ -31,4 +30,9 @@ public class Currency {
     private String twoFractions;
     private String fiveFractions;
     private Sex fractionSex;
+
+    public enum Sex {
+        MALE,
+        FEMALE;
+    }
 }
