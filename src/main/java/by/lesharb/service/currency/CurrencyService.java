@@ -1,9 +1,6 @@
 package by.lesharb.service.currency;
 
 import by.lesharb.dto.Currency;
-import io.vavr.Tuple3;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Aliaksei Labotski.
@@ -17,17 +14,17 @@ public interface CurrencyService {
 
     Currency getCurrencyByName(String name);
 
-    void addCurrency(Currency currency);
+    // void addCurrency(Currency currency);
 
-    void addCurrency(String currency);
+    // void addCurrency(String currency);
 
     void removeCurrency(Currency currency);
 
     void removeCurrency(String currency);
 
-    List<Tuple3<Integer, String, Currency>> getCurrencies();
+    // List<Tuple3<Integer, String, Currency>> getCurrencies();
 
-    Map<String, String> format(long amount);
+    // Map<String, String> format(long amount);
 
     String format(long amount, Currency currency);
 }

@@ -1,6 +1,5 @@
 package by.lesharb;
 
-import io.micronaut.runtime.Micronaut;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -13,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 public class AmountInWord {
 
     public static void main(String[] args) {
-        Micronaut.run(AmountInWord.class);
     }
 
 }

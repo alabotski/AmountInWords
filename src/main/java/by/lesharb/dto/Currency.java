@@ -1,38 +1,60 @@
 package by.lesharb.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import org.immutables.gson.Gson.TypeAdapters;
+import org.immutables.value.Value.Immutable;
 
 /**
- * Class which represents Currency. Fields other than <code>code</code> and <code>name</code> are used for morphology.
+ * Class which represents  Fields other than <code>code</code> and <code>name</code> are used for morphology.
  *
  * @author Aliaksei abotski.
  * @since 2019-08-14.
  */
-@Data
-@Builder
-public class Currency {
+@Immutable
+@TypeAdapters
+public abstract class Currency {
 
     // Digit currency code
-    private Integer code;
+    public abstract int code();
 
     // Symbol currency code
-    private String name;
+    public abstract String name();
 
     // Integer part morphology variables
-    private String oneInteger;
-    private String twoIntegers;
-    private String fiveIntegers;
-    private Sex integerSex;
+    public abstract String oneInteger();
+
+    public abstract String twoIntegers();
+
+    public abstract String fiveIntegers();
+
+    public abstract Sex integerSex();
 
     // Fraction part morphology variables
-    private String oneFraction;
-    private String twoFractions;
-    private String fiveFractions;
-    private Sex fractionSex;
+    public abstract String oneFraction();
+
+    public abstract String twoFractions();
+
+    public abstract String fiveFractions();
+
+    public abstract Sex fractionSex();
 
     public enum Sex {
         MALE,
         FEMALE;
     }
+
+    // public Currency clone() {
+    //     return builder()
+    //             .code(getCode())
+    //             .name(getName())
+    //             .oneInteger(getOneInteger())
+    //             .twoIntegers(getTwoIntegers())
+    //             .fiveIntegers(getFiveIntegers())
+    //             .integerSex(getIntegerSex())
+    //             .oneFraction(getOneFraction())
+    //             .twoFractions(getTwoFractions())
+    //             .fiveFractions(getFiveFractions())
+    //             .fractionSex(getFractionSex())
+    //             .build();
+    // }
+
 }
