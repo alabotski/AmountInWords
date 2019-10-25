@@ -1,4 +1,4 @@
-package by.lesharb.service.currency;
+package by.lesharb.util;
 
 import static by.lesharb.messages.MessageConstants.BILLION_FIVE;
 import static by.lesharb.messages.MessageConstants.BILLION_ONE;

@@ -32,14 +32,4 @@ dependencies {
     implementation "org.apache.commons:commons-lang3:$commonslang3Version"
     implementation "commons-io:commons-io:$commonsIOVersion"
     implementation "com.google.code.gson:gson:$gsonVersion"
-    implementation "io.vavr:vavr:$vavrVersion"
-
-    testImplementation "org.junit.jupiter:junit-jupiter:$junitJupiterVersion"
-}
-
-test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
 }

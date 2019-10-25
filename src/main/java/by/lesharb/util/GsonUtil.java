@@ -12,7 +12,7 @@ import lombok.experimental.UtilityClass;
  * @since 25/10/19.
  */
 @UtilityClass
-class GsonUtil {
+public class GsonUtil {
 
     private static Gson gson;
 
